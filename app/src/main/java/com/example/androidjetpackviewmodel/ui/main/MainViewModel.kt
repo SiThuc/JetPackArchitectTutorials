@@ -1,5 +1,7 @@
 package com.example.androidjetpackviewmodel.ui.main
 
+import android.text.Editable
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -10,15 +12,14 @@ class MainViewModel : ViewModel() {
     var result: MutableLiveData<Double> = MutableLiveData()
 
     fun onClickToConvert() {
-
         if (!dollarValue.value.equals(""))
             result.value = dollarValue.value!!.toDouble().times(euro2usd_rate)
         else
             result.value = 0.0
     }
 
-    fun onTextChanged(){
-        if (!dollarValue.value.equals(""))
+    fun onTextChange(edit: Editable?){
+        if (!edit.isNullOrEmpty())
             result.value = dollarValue.value!!.toDouble().times(euro2usd_rate)
         else
             result.value = 0.0
